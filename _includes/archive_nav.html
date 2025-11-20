@@ -1,0 +1,49 @@
+<aside class="blog-sidebar" aria-label="Blog navigation">
+  <section class="archive-section">
+    <h2 class="sidebar-heading">Archive</h2>
+    <ul class="archive-years">
+      {% assign years = site.posts | group_by_exp: 'post', 'post.date | date: "%Y"' %}
+      {% for year in years %}
+        <li>
+          <details {% if forloop.first %}open{% endif %}>
+            <summary>{{ year.name }}</summary>
+            <ul class="archive-months">
+              {% assign months = year.items | group_by_exp: 'post','post.date | date: "%Y-%m"' %}
+              {% for month in months %}
+                {% assign anchor = month.name | replace: '-', '' %}
+                {% assign month_label = month.items[0].date | date: '%B' %}
+                <li><a href="#month-{{ anchor }}">{{ month_label }} ({{ month.items.size }})</a></li>
+              {% endfor %}
+            </ul>
+          </details>
+        </li>
+      {% endfor %}
+    </ul>
+  </section>
+  <section class="tags-section">
+    <h2 class="sidebar-heading">Tags</h2>
+    <ul class="tag-cloud" aria-label="Post tags">
+      {% assign all_tags = "" | split: "" %}
+      {% for post in site.posts %}
+        {% if post.tags %}
+          {% for tag in post.tags %}
+            {% unless all_tags contains tag %}
+              {% assign all_tags = all_tags | push: tag %}
+            {% endunless %}
+          {% endfor %}
+        {% endif %}
+      {% endfor %}
+      {% assign sorted_tags = all_tags | sort_natural %}
+      {% for tag in sorted_tags %}
+        {% assign tag_count = 0 %}
+        {% for post in site.posts %}
+          {% if post.tags contains tag %}
+            {% assign tag_count = tag_count | plus: 1 %}
+          {% endif %}
+        {% endfor %}
+        <li><button class="tag-filter" data-tag="{{ tag | downcase | replace: ' ', '-' }}">{{ tag }} <span class="count">{{ tag_count }}</span></button></li>
+      {% endfor %}
+    </ul>
+    <button class="tag-filter-clear" hidden>Clear filter</button>
+  </section>
+</aside>

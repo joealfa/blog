@@ -1,0 +1,22 @@
+# Jekyll build output
+_site/
+.jekyll-cache/
+.jekyll-metadata
+
+# Development config
+_config_dev.yml
+
+# Ruby/Bundler
+.bundle/
+vendor/
+.ruby-version
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
