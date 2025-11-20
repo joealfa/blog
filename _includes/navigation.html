@@ -1,0 +1,14 @@
+<div class="nav-wrapper container">
+  <a class="brand" href="{{ '/' | relative_url }}">{{ site.title | default: "Blog" }}</a>
+  <button id="nav-toggle" class="nav-toggle" aria-expanded="false" aria-controls="primary-nav" aria-label="Toggle navigation">☰</button>
+  <nav id="primary-nav" class="primary-nav" aria-label="Primary">
+    <ul class="nav-list">
+      {% for item in site.data.navigation %}
+        <li>
+          <a href="{{ item.link | relative_url }}"{% if page.url == item.link %} class="active" aria-current="page"{% endif %}>{{ item.name }}</a>
+        </li>
+      {% endfor %}
+    </ul>
+    <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode">🌙</button>
+  </nav>
+</div>
