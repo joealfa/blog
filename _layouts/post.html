@@ -23,3 +23,35 @@ layout: default
 		</div>
 	</nav>
 </article>
+
+<!-- Image Modal -->
+<div id="imageModal" class="image-modal" aria-hidden="true">
+	<div class="image-modal-overlay"></div>
+	<div class="image-modal-content">
+		<button class="image-modal-close" aria-label="Close modal">&times;</button>
+		<div class="image-modal-controls">
+			<button class="image-zoom-btn" data-action="zoom-in" aria-label="Zoom in">
+				<svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
+					<circle cx="8" cy="8" r="6"/>
+					<path d="M12.5 12.5L17 17M8 5v6m-3-3h6"/>
+				</svg>
+			</button>
+			<button class="image-zoom-btn" data-action="zoom-out" aria-label="Zoom out">
+				<svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
+					<circle cx="8" cy="8" r="6"/>
+					<path d="M12.5 12.5L17 17M5 8h6"/>
+				</svg>
+			</button>
+			<button class="image-zoom-btn" data-action="reset" aria-label="Reset zoom">
+				<svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
+					<path d="M3 10a7 7 0 0 1 12.85-3.85M17 10a7 7 0 0 1-12.85 3.85M3 4v6h6M17 16v-6h-6"/>
+				</svg>
+			</button>
+		</div>
+		<div class="image-modal-wrapper">
+			<img class="image-modal-img" src="" alt="">
+		</div>
+	</div>
+</div>
+
+<script src="{{ '/assets/js/image-modal.js' | relative_url }}"></script>

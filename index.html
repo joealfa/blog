@@ -17,6 +17,11 @@ title: JMA Blog
         <div class="posts-grid">
           {% for post in month.items %}
             <article class="post-card" data-tags="{% if post.tags %}{% for t in post.tags %}{% unless t == '' or t == nil %}{{ t | downcase | replace: ' ', '-' }} {% endunless %}{% endfor %}{% endif %}">
+              {% if post.image %}
+                <a href="{{ post.url | relative_url }}" class="post-card-image">
+                  <img src="{{ post.image | relative_url }}" alt="{{ post.title }}" loading="lazy">
+                </a>
+              {% endif %}
               <header>
                 <h2 class="post-card-title"><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h2>
                 <p class="post-card-meta">{{ post.date | date: '%b %d, %Y' }}</p>
