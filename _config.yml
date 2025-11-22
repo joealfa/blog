@@ -25,3 +25,5 @@ collections:
 exclude:
   - Gemfile
   - Gemfile.lock
+
+highlighter: none
