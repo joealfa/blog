@@ -1,10 +1,10 @@
-(function() {
-  const modal = document.getElementById('imageModal');
-  const modalImg = modal.querySelector('.image-modal-img');
-  const modalWrapper = modal.querySelector('.image-modal-wrapper');
-  const closeBtn = modal.querySelector('.image-modal-close');
-  const overlay = modal.querySelector('.image-modal-overlay');
-  const zoomButtons = modal.querySelectorAll('.image-zoom-btn');
+(function () {
+  const modal = document.getElementById("imageModal");
+  const modalImg = modal.querySelector(".image-modal-img");
+  const modalWrapper = modal.querySelector(".image-modal-wrapper");
+  const closeBtn = modal.querySelector(".image-modal-close");
+  const overlay = modal.querySelector(".image-modal-overlay");
+  const zoomButtons = modal.querySelectorAll(".image-zoom-btn");
 
   let scale = 1;
   let translateX = 0;
@@ -21,9 +21,9 @@
 
   // Initialize click handlers for all images in post content
   function initImageClickHandlers() {
-    const postImages = document.querySelectorAll('.post-content img');
-    postImages.forEach(img => {
-      img.addEventListener('click', function(e) {
+    const postImages = document.querySelectorAll(".post-content img");
+    postImages.forEach((img) => {
+      img.addEventListener("click", function (e) {
         e.preventDefault();
         openModal(this.src, this.alt);
       });
@@ -34,22 +34,22 @@
   function openModal(src, alt) {
     modalImg.src = src;
     modalImg.alt = alt;
-    modal.classList.add('active');
-    modal.setAttribute('aria-hidden', 'false');
-    document.body.style.overflow = 'hidden';
+    modal.classList.add("active");
+    modal.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
     resetTransform();
   }
 
   // Close modal
   function closeModal() {
-    modal.classList.remove('active');
-    modal.setAttribute('aria-hidden', 'true');
-    document.body.style.overflow = '';
+    modal.classList.remove("active");
+    modal.setAttribute("aria-hidden", "true");
+    document.body.style.overflow = "";
     resetTransform();
     // Clear image source after animation
     setTimeout(() => {
-      modalImg.src = '';
-      modalImg.alt = '';
+      modalImg.src = "";
+      modalImg.alt = "";
     }, 300);
   }
 
@@ -92,10 +92,10 @@
     if (scale <= MIN_SCALE) return;
 
     isDragging = true;
-    modalWrapper.classList.add('dragging');
+    modalWrapper.classList.add("dragging");
 
-    const clientX = e.type.includes('touch') ? e.touches[0].clientX : e.clientX;
-    const clientY = e.type.includes('touch') ? e.touches[0].clientY : e.clientY;
+    const clientX = e.type.includes("touch") ? e.touches[0].clientX : e.clientX;
+    const clientY = e.type.includes("touch") ? e.touches[0].clientY : e.clientY;
 
     startX = clientX;
     startY = clientY;
@@ -108,8 +108,8 @@
   function handleDragMove(e) {
     if (!isDragging) return;
 
-    const clientX = e.type.includes('touch') ? e.touches[0].clientX : e.clientX;
-    const clientY = e.type.includes('touch') ? e.touches[0].clientY : e.clientY;
+    const clientX = e.type.includes("touch") ? e.touches[0].clientX : e.clientX;
+    const clientY = e.type.includes("touch") ? e.touches[0].clientY : e.clientY;
 
     translateX = initialTranslateX + (clientX - startX);
     translateY = initialTranslateY + (clientY - startY);
@@ -120,7 +120,7 @@
 
   function handleDragEnd() {
     isDragging = false;
-    modalWrapper.classList.remove('dragging');
+    modalWrapper.classList.remove("dragging");
   }
 
   // Mouse wheel zoom
@@ -135,21 +135,21 @@
   }
 
   // Event Listeners
-  closeBtn.addEventListener('click', closeModal);
-  overlay.addEventListener('click', closeModal);
+  closeBtn.addEventListener("click", closeModal);
+  overlay.addEventListener("click", closeModal);
 
   // Zoom button handlers
-  zoomButtons.forEach(btn => {
-    btn.addEventListener('click', function() {
+  zoomButtons.forEach((btn) => {
+    btn.addEventListener("click", function () {
       const action = this.dataset.action;
-      switch(action) {
-        case 'zoom-in':
+      switch (action) {
+        case "zoom-in":
           zoomIn();
           break;
-        case 'zoom-out':
+        case "zoom-out":
           zoomOut();
           break;
-        case 'reset':
+        case "reset":
           resetTransform();
           break;
       }
@@ -157,50 +157,52 @@
   });
 
   // Drag handlers
-  modalWrapper.addEventListener('mousedown', handleDragStart);
-  modalWrapper.addEventListener('touchstart', handleDragStart, { passive: false });
+  modalWrapper.addEventListener("mousedown", handleDragStart);
+  modalWrapper.addEventListener("touchstart", handleDragStart, {
+    passive: false,
+  });
 
-  document.addEventListener('mousemove', handleDragMove);
-  document.addEventListener('touchmove', handleDragMove, { passive: false });
+  document.addEventListener("mousemove", handleDragMove);
+  document.addEventListener("touchmove", handleDragMove, { passive: false });
 
-  document.addEventListener('mouseup', handleDragEnd);
-  document.addEventListener('touchend', handleDragEnd);
+  document.addEventListener("mouseup", handleDragEnd);
+  document.addEventListener("touchend", handleDragEnd);
 
   // Mouse wheel zoom
-  modalWrapper.addEventListener('wheel', handleWheel, { passive: false });
+  modalWrapper.addEventListener("wheel", handleWheel, { passive: false });
 
   // Keyboard handlers
-  document.addEventListener('keydown', function(e) {
-    if (!modal.classList.contains('active')) return;
+  document.addEventListener("keydown", function (e) {
+    if (!modal.classList.contains("active")) return;
 
-    switch(e.key) {
-      case 'Escape':
+    switch (e.key) {
+      case "Escape":
         closeModal();
         break;
-      case '+':
-      case '=':
+      case "+":
+      case "=":
         zoomIn();
         break;
-      case '-':
-      case '_':
+      case "-":
+      case "_":
         zoomOut();
         break;
-      case '0':
+      case "0":
         resetTransform();
         break;
-      case 'ArrowLeft':
+      case "ArrowLeft":
         translateX += 50;
         updateTransform();
         break;
-      case 'ArrowRight':
+      case "ArrowRight":
         translateX -= 50;
         updateTransform();
         break;
-      case 'ArrowUp':
+      case "ArrowUp":
         translateY += 50;
         updateTransform();
         break;
-      case 'ArrowDown':
+      case "ArrowDown":
         translateY -= 50;
         updateTransform();
         break;
@@ -208,8 +210,8 @@
   });
 
   // Initialize when DOM is ready
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initImageClickHandlers);
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initImageClickHandlers);
   } else {
     initImageClickHandlers();
   }

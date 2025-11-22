@@ -1,28 +1,41 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>{% if page.title %}{{ page.title }} | {% endif %}{{ site.title | default: "JMA Blog" }}</title>
-    <meta name="description" content="{{ page.excerpt | strip_html | truncate: 160 | default: site.description }}">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>
+      {% if page.title %}{{ page.title }} | {% endif %}{{ site.title | default:
+      "JMA Blog" }}
+    </title>
+    <meta
+      name="description"
+      content="{{ page.excerpt | strip_html | truncate: 160 | default: site.description }}"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css"
+    />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
-    
-    <link rel="stylesheet" href="{{ '/assets/css/styles.css' | relative_url }}">
+
+    <link
+      rel="stylesheet"
+      href="{{ '/assets/css/styles.css' | relative_url }}"
+    />
   </head>
   <body>
-    <header class="site-header">
-      {% include navigation.html %}
-    </header>
+    <header class="site-header">{% include navigation.html %}</header>
     <main class="site-main container">{{ content }}</main>
-    <footer class="site-footer container">
-      {% include footer.html %}
-    </footer>
+    <footer class="site-footer container">{% include footer.html %}</footer>
     <script src="{{ '/assets/js/theme.js' | relative_url }}"></script>
-    <script>hljs.highlightAll();</script>
+    <script>
+      hljs.highlightAll();
+    </script>
   </body>
 </html>
