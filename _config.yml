@@ -2,6 +2,11 @@ title: JMA Blog
 description: A modern Jekyll blog
 url: https://joealfa.github.io/
 baseurl: "/blog"
+author: joey
+
+# Plugins
+plugins:
+  - jekyll-feed
 
 # Build settings
 markdown: kramdown

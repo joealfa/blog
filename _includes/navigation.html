@@ -8,6 +8,9 @@
           <a href="{{ item.link | relative_url }}"{% if page.url == item.link %} class="active" aria-current="page"{% endif %}>{{ item.name }}</a>
         </li>
       {% endfor %}
+      <li>
+        <a href="{{ '/feed.xml' | relative_url }}">RSS</a>
+      </li>
     </ul>
     <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode">🌙</button>
   </nav>
