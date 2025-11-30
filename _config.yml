@@ -4,6 +4,9 @@ url: https://joealfa.github.io/
 baseurl: "/blog"
 author: joey
 
+# Allow posts dated today (handles timezone differences with GitHub Pages)
+future: true
+
 # Plugins
 plugins:
   - jekyll-feed
