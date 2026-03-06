@@ -32,7 +32,7 @@ Just prompt the LLM — *"Show me the poll"*, *"Open the quiz"*, *"Show my task 
 ## Demo
 
 <video controls width="100%" style="border-radius: 8px; margin: 1rem 0;">
-  <source src="/assets/videos/mcp-server-interactive.mp4" type="video/mp4">
+  <source src="{{ site.baseurl }}/assets/videos/mcp-server-interactive.mp4" type="video/mp4">
   Your browser does not support the video tag.
 </video>
 
